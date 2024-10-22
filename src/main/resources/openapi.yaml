@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 0.1.9
+
+servers:
+  - url: http://localhost:8080
+    description: Bank server url
+
+tags:
+  - name: bankAccounts
+    description: retrieving details around bank accounts
+
+paths:
+  /bank_accounts:
+    get:
+      operationId: getBankAccounts
+      summary: Returns a list of users.
+      description: Retrieve all the bank accounts based on conditions
+      tags:
+        - bankAccounts
+      parameters:
+        - name: state
+          description: retrieve bank accounts for a specific state
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: startAge
+          description: retrieve bank accounts for all age groups greater than this
+          in: query
+          schema:
+            type: integer
+        - name: endAge
+          description: retrieve bank accounts for upto this age
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: BankAccountDetail
+  /bank_accounts/{accountId}:
+    get:
+      operationId: getBankAccountById
+      summary: Returns a single bank account based on id
+      tags:
+        - bankAccounts
+      parameters:
+        - name: accountId
+          in: path
+          description: bank account id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Retrieve the bank account based on id
+          content:
+            application/json:
+              schema:
+                type: BankAccountDetail
+
+components:
+  schemas:
+    BankAccountDetail:
+      type: object
+      description: Bank account details
+      properties:
+        accountNumber:
+          type: integer
+          format: int64
+        balance:
+          type: integer
+          format: int64
+        firstname:
+          type: string
+        lastname:
+          type: string
+        age:
+          type: integer
+        gender:
+          type: string
+        address:
+          type: string
+        email:
+          type: string
+        employer:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
