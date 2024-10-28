@@ -1,7 +1,10 @@
 package com.esproject.demo.clients.vault;
 
+import com.esproject.demo.clients.vault.dtos.VaultData;
+import com.esproject.demo.clients.vault.dtos.VaultResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -19,7 +22,10 @@ public class VaultService {
     public VaultService(Environment env) {
         String path = env.getProperty(BASE_PATH);
         vaultToken = env.getProperty(TOKEN_PATH);
-        restClient = RestClient.builder().baseUrl(Objects.requireNonNull(path)).build();
+        restClient = RestClient.builder()
+                .baseUrl(Objects.requireNonNull(path))
+                .messageConverters(httpMessageConverters -> httpMessageConverters.add(new MappingJackson2HttpMessageConverter()))
+                .build();
     }
 
     public VaultData readSecret(String path) {

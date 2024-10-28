@@ -1,0 +1,28 @@
+[
+  {
+    "account_number": 157,
+    "balance": 39868,
+    "firstname": "Claudia",
+    "lastname": "Terry",
+    "age": 20,
+    "gender": "F",
+    "address": "132 Gunnison Court",
+    "employer": "Lumbrex",
+    "email": "claudiaterry@lumbrex.com",
+    "city": "Castleton",
+    "state": "MD"
+  },
+  {
+    "account_number": 215,
+    "balance": 37427,
+    "firstname": "Copeland",
+    "lastname": "Solomon",
+    "age": 20,
+    "gender": "M",
+    "address": "741 McDonald Avenue",
+    "employer": "Recognia",
+    "email": "copelandsolomon@recognia.com",
+    "city": "Edmund",
+    "state": "ME"
+  }
+]

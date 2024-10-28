@@ -1,4 +1,4 @@
-package com.esproject.demo.clients.vault;
+package com.esproject.demo.clients.vault.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
